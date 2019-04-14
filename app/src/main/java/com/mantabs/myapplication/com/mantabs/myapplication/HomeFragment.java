@@ -66,7 +66,7 @@ public class HomeFragment extends Fragment {
 
         listdata = new ArrayList<Data>();
         AmbilData();
-        recyclerAdapter = new RecyclerAdapter(this,listdata);
+        recyclerAdapter = new RecyclerAdapter(this, listdata);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerAdapter.notifyDataSetChanged();
     }

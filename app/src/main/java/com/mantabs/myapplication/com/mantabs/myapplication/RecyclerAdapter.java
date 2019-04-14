@@ -1,6 +1,5 @@
 package com.mantabs.myapplication;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -16,10 +15,10 @@ import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     private ArrayList<Data> listdata;
-    private Activity activity;
+    private HomeFragment activity;
     private Context context;
 
-    public  RecyclerAdapter(Activity activity, ArrayList<Data> listdata){
+    public  RecyclerAdapter(HomeFragment activity, ArrayList<Data> listdata){
         this.listdata = listdata;
         this.activity = activity;
 

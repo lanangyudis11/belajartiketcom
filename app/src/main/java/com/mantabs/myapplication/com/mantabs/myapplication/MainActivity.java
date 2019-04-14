@@ -21,12 +21,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private String URL="http://bazings.sveg.xyz/";
-    private RecyclerAdapter recyclerAdapter;
-    private RecyclerView recyclerView;
-    private ArrayList<Data> listdata;
-
-    private GridLayoutManager layoutManager;
 
 
 
@@ -74,57 +68,9 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        layoutManager= new GridLayoutManager(this,2);
-        layoutManager.setOrientation(GridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
 
-        listdata = new ArrayList<Data>();
-        AmbilData();
-        recyclerAdapter = new RecyclerAdapter(this,listdata);
-        recyclerView.setAdapter(recyclerAdapter);
-        recyclerAdapter.notifyDataSetChanged();
 
 
     }
-    public void AmbilData(){
-        JsonArrayRequest aarRequest = new JsonArrayRequest(URL + "/produk.php",new Response.Listener<JSONArray>() {
 
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        if (response.length() > 0) {
-                            for (int i = 0; i < response.length(); i++) {
-                                try {
-                                    JSONObject data = response.getJSONObject(i);
-                                    Data item = new Data();
-                                    item.setId(data.getString("id"));
-                                    item.setJudul(data.getString("judul"));
-                                    item.setHarga(data.getString("harga"));
-                                    item.setThumbnail(URL + "/img/" + data.getString("gambar"));
-                                    listdata.add(item);
-                                    recyclerAdapter.notifyDataSetChanged();
-                                } catch (JSONException e) {
-                                }
-                            }
-                        }
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }){
-
-
-
-
-
-
-        };
-        Volley.newRequestQueue(this).add(aarRequest);
-
-    }
 }
